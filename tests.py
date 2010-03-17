@@ -4,7 +4,10 @@ import xmlutils
 
 class XMLUtilsTestCase(unittest.TestCase):
     def setUp(self):
-        self.dic = {'results': [{'result': {'rank': '1', 'plan': {'_attrs': {'id': '3044'}, 'name': u'なまえ'}}}]}
+        self.dic = {'results': [
+            {'result': {'rank': '1', 'user': {'_attrs': {'id': '1234'}, 'name': u'ユーザ1'}}},
+            {'result': {'rank': '2', 'user': {'_attrs': {'id': '1235'}, 'name': u'ユーザ2'}}},
+        ]}
 
     def test_render(self):
         node = xmlutils.dict_to_node(self.dic)
@@ -13,10 +16,16 @@ class XMLUtilsTestCase(unittest.TestCase):
 """<?xml version="1.0" encoding="utf-8"?>
 <results>
   <result>
-    <plan id="3044">
-      <name>なまえ</name>
-    </plan>
+    <user id="1234">
+      <name>ユーザ1</name>
+    </user>
     <rank>1</rank>
+  </result>
+  <result>
+    <user id="1235">
+      <name>ユーザ2</name>
+    </user>
+    <rank>2</rank>
   </result>
 </results>
 """
