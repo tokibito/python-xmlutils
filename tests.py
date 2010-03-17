@@ -30,6 +30,26 @@ class XMLUtilsTestCase(unittest.TestCase):
 </results>
 """
         )
+        self.assertEqual(
+            xmlutils.XMLRenderer().render(node, indent=2, unichar=True),
+"""<?xml version="1.0" encoding="utf-8"?>
+<results>
+  <result>
+    <user id="1234">
+      <name>&#12518;&#12540;&#12470;&#49;</name>
+    </user>
+    <rank>&#49;</rank>
+  </result>
+  <result>
+    <user id="1235">
+      <name>&#12518;&#12540;&#12470;&#50;</name>
+    </user>
+    <rank>&#50;</rank>
+  </result>
+</results>
+"""
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
