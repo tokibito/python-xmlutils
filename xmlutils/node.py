@@ -1,5 +1,3 @@
-from types import DictType, ListType
-
 class Node(object):
     def __init__(self, name, content=None, attrs=None):
         self.name = name
@@ -32,9 +30,9 @@ def dict_to_node(dic, parent=None, is_root=True):
         if k == '_attrs':
             parent.attrs = v
             continue
-        elif type(v) == DictType:
+        elif isinstance(v, dict):
             node.add_childs(dict_to_node(v, parent=node, is_root=False))
-        elif type(v) == ListType:
+        elif isinstance(v, list):
             node.add_childs(reduce(lambda x,y:x+y, map(lambda m: dict_to_node(m, parent=node, is_root=False), v)))
         else:
             node.content = v
