@@ -49,9 +49,9 @@ class XMLRenderer(BaseRenderer):
             if indent:
                 handler._write('\n')
 
-    def render(self, node, out=None, encoding='utf-8', indent=None, unichar=False):
+    def render(self, node, out=None, encoding=None, indent=None, unichar=False):
         stream = StringIO()
-        handler = SimplerXMLGenerator(out=stream, encoding=encoding)
+        handler = SimplerXMLGenerator(out=stream, encoding=encoding or 'utf-8')
         handler.startDocument()
         self._render_node(handler, node, indent, unichar=unichar)
         if not out is None:
