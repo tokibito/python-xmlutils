@@ -33,7 +33,8 @@ def dict_to_node(dic, parent=None, is_root=True):
         elif isinstance(v, dict):
             node.add_childs(dict_to_node(v, parent=node, is_root=False))
         elif isinstance(v, list):
-            node.add_childs(reduce(lambda x,y:x+y, map(lambda m: dict_to_node(m, parent=node, is_root=False), v)))
+            if v:
+                node.add_childs(reduce(lambda x,y:x+y, map(lambda m: dict_to_node(m, parent=node, is_root=False), v)))
         else:
             node.content = v
         node_list.append(node)
