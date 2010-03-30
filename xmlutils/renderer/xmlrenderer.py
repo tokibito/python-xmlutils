@@ -29,7 +29,7 @@ class XMLRenderer(BaseRenderer):
         if node.has_content():
             if indent:
                 handler._write(' ' * depth)
-            handler.addQuickElement(node.name, node.content, unichar=unichar)
+            handler.addQuickElement(node.name, node.content, node.attrs, unichar=unichar)
             if indent:
                 handler._write('\n')
         else:
