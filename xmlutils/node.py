@@ -30,6 +30,9 @@ def dict_to_node(dic, parent=None, is_root=True):
         if k == '_attrs':
             parent.attrs = v
             continue
+        elif k == '_content':
+            parent.content = v
+            continue
         elif isinstance(v, dict):
             node.add_childs(dict_to_node(v, parent=node, is_root=False))
         elif isinstance(v, list):
